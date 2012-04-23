@@ -1,9 +1,9 @@
 /* ------------------------------------------
- *   Reset ♥
- *     http://meyerweb.com/eric/tools/css/reset/
- *       v2.0 | 20110126
- *         License: none (public domain)
- *         ---------------------------------------------*/
+ *  Reset ♥
+ *  http://meyerweb.com/eric/tools/css/reset/
+ *  v2.0 | 20110126
+ *  License: none (public domain)
+ * ---------------------------------------------*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -71,6 +71,9 @@ p {
   margin: 10px 0;
   word-wrap: break-word;
   }
+strong {
+  font-weight: bold;
+  }
 a {
   color: #0085BD;
   text-decoration: none;
@@ -78,7 +81,7 @@ a {
   font-weight: inherit;
   }
 .limiter {
-  width: 960px;
+  width: 600px;
   margin: 0 auto;
   padding: 100px 0;
   }

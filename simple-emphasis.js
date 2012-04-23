@@ -4,7 +4,7 @@
     by Michael Donohoe (@donohoe)
     https://github.com/NYTimes/Emphasis
     http://open.blogs.nytimes.com/2011/01/11/emphasis-update-and-source
-    
+
     - - - - - - - - - -
 
     Modifications by tristen (@fallsemo)
@@ -22,10 +22,10 @@
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-    
+
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-    
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,20 +44,20 @@ jQuery(function($) {
             this.pl = false; // Paragraph List
             this.p  = false; // Paragraph Anchor
             this.h  = false; // Highlighted paragraphs
-            this.vu = false; // Are paragraph links visible or not
+            this.vu = true; // Are paragraph links visible or not
             this.kh = '|';
 
             this.addCSS();
             this.readHash();
 
-            $(document).bind('keydown', this.keydown);                
+            this.vu ? $(document).bind('keydown', this.keydown) : this.paragraphInfo();
         },
 
         config: function() {
             // Eligible Paragraphs
             // This uses some common markup for plain and simple paragraphs - those that are not empty, no classes.
             // We use jQuery for its css selector awesomeness, but your needs might be simpler (getElementsByTagName('p') etc.)
-            this.paraSelctors           = $('.content p');
+            this.paraSelctors           = $('.content p:not(.thumbnail p)');
 
             // Class names
             this.classReady             = 'em-ready';
@@ -65,6 +65,7 @@ jQuery(function($) {
             this.classInfo              = 'em-info';
             this.classAnchor            = 'em-anchor';
             this.classActiveAnchor      = 'em-active-anchor';
+            this.classSelectedParagraph = 'selected-paragraph';
             this.classActiveParagraph   = 'active-paragraph';
         },
 
@@ -73,7 +74,7 @@ jQuery(function($) {
             var st = document.createElement('style');
             st.setAttribute('type', 'text/css');
             // for validation goodness
-            var stStr = ' span.' + this.classInfo + ' { position: absolute; margin: -1px 0 0 -10px; padding: 0; font-size: 12px; background-color: transparent!important} span.' + this.classInfo + ' a { text-decoration: none; border: 0;} p.' + this.classActiveParagraph + ' { display: block; position: relative; border: 1px solid #CCC; -moz-box-shadow: 0 0 8px rgba(0,0,0,0.25); -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.25); box-shadow: 0 0 8px rgba(0,0,0,0.25); padding: 15px 10px 28px 25px; margin-top: 20px; left: -25px; width: 100%; }' + 'p.' + this.classActiveParagraph + ':hover:after { content: "Link to this paragraph from the url in your browser"; position: absolute; right: 10px; bottom: 5px; font-size: 11px; color: #ccc; }';
+            var stStr = 'p.' + this.classSelectedParagraph + ' { display: block; position: relative; background: #F2F4F5; }' + '@-webkit-keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} p.' + this.classActiveParagraph + ' { display: block; position: relative; background-color: transparent; -webkit-animation:backgroundFade 5s; }';
             try {
                 // try the sensible way
                 st.innerHTML = stStr;
@@ -155,15 +156,17 @@ jQuery(function($) {
         },
 
         paragraphClick: function(e) {
-            e.preventDefault();
             if (!this.vu) { return; }
+
+            //Remove any active paragraph if there is one.
+            $('p.' + this.classActiveParagraph).removeClass(this.classActiveParagraph);
 
             var change = false,
                 pr = (e.currentTarget.nodeName === 'P') ? e.currentTarget : false, // Paragraph
                 an = (e.target.nodeName === 'A')        ? e.target        : false; // Anchor
 
             if (pr || an) {
-                if (!$(pr).hasClass(this.classActiveParagraph)) {
+                if (!$(pr).hasClass(this.classSelectedParagraph)) {
                     this.updateParagraph(pr);
                     change = true;
                 }
@@ -176,7 +179,7 @@ jQuery(function($) {
             // Add an active link to paragraphs if one exists
             var hasSpan, pl, len, i, para, key, isActive, spans;
 
-            if (mode) {
+            //if (mode) {
                 // If shift is toggled on
                 hasSpan = $('span.' + this.classInfo);
                 if (hasSpan.length === 0) {
@@ -187,27 +190,28 @@ jQuery(function($) {
                         if (para) {
                             key        = pl.keys[i];
                             isActive   = (key === this.p) ? para.className = this.classActiveParagraph : '';
-                            para.innerHTML = '<span class="' + this.classInfo + '"><a class="' + this.classAnchor + '" href="#p[' + key + ']" data-key="' + key + '" title="Link to ' + this.ordinal(i+1) + ' paragraph">&para;</a></span>' + para.innerHTML;
+                            // TODO Add title attribute of, 'title="Link to ' + this.ordinal(i+1) + ' paragraph">' to the new paragraph div.
+                            // para.innerHTML = '<span class="' + this.classInfo + '"><a class="' + this.classAnchor + '" href="#p[' + key + ']" data-key="' + key + '" title="Link to ' + this.ordinal(i+1) + ' paragraph">&para;</a></span>' + para.innerHTML;
                         }
                     }
                 }
-            } else {
-                // If shift is toggled off
-                spans = $('span.' + this.classInfo);
-
-                len = spans.length;
-                // Loop through each and remove all the spans added.
-                for (i=0; i<len; i++) {
-                    $(spans[i]).remove();
-                }
-                $(this).removeClass(this.classActive);
-            }
+            // } else {
+            //     // If shift is toggled off
+            //     spans = $('span.' + this.classInfo);
+            //
+            //     len = spans.length;
+            //     // Loop through each and remove all the spans added.
+            //     for (i=0; i<len; i++) {
+            //         $(spans[i]).remove();
+            //     }
+            //     $(this).removeClass(this.classActive);
+            // }
         },
 
         updateParagraph: function(pr) {
             this.p = pr.getAttribute('data-key');
-            $('p.' + this.classActiveParagraph).removeClass(this.classActiveParagraph);
-            $(pr).addClass(this.classActiveParagraph);
+            $('p.' + this.classSelectedParagraph).removeClass(this.classSelectedParagraph);
+            $(pr).addClass(this.classSelectedParagraph);
         },
 
         updateURLHash: function(change) {
@@ -230,7 +234,7 @@ jQuery(function($) {
                 anchor    = ((this.p) ? 'p[' + this.p + '],' : '');
                 hash      = (anchor + (h.replace('h[,', 'h[') + ']')).replace(',h[]', '');
             } else {
-                $('p.' + this.classActiveParagraph).removeClass(this.classActiveParagraph);
+                $('p.' + this.classSelectedParagraph).removeClass(this.classSelectedParagraph);
                 hash = '_';
             }
             location.hash = hash;
@@ -298,7 +302,6 @@ jQuery(function($) {
 
         highlightMatch: function() {
             var hasSpan, pl, len, i, para, key, isActive;
-
             hasSpan = $('span.' + this.classInfo);
             if (hasSpan.length === 0) {
                 pl  = this.paragraphList();
@@ -404,5 +407,4 @@ jQuery(function($) {
     $(window).bind('load', function() {
         Emphasis.init();
     });
-
 });
