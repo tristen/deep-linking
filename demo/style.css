@@ -1,0 +1,84 @@
+/* ------------------------------------------
+ *   Reset ♥
+ *     http://meyerweb.com/eric/tools/css/reset/
+ *       v2.0 | 20110126
+ *         License: none (public domain)
+ *         ---------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body { line-height: 1; }
+ol, ul { list-style: none;  }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+/* tables still need 'cellspacing='0'' in the markup */
+table { border-collapse: collapse; border-spacing: 0; }
+/* remember to define focus styles. Hee Haw */
+:focus { outline: 0; }
+
+body {
+  font: 15px/24px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #404040;
+  font-weight: normal;
+  margin: 0 10px;
+  }
+
+/*-----------------------------------
+  Typography
+-------------------------------------*/
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+  font-weight: bold;
+  }
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+  color: #404040;
+  border-bottom: none!important;
+  }
+h1 { font-size: 33px; line-height: 38px; }
+h2 { font-size: 23px; line-height: 34px; margin-bottom: 5px; padding-top: 10px; }
+h3 { font-size: 17px; line-height: 26px; }
+h4 { font-size: 15px; line-height: 22px; margin: 10px 0; }
+h5 { font-size: 18px; line-height: 22px; margin: 10px 0; }
+h6 { font-size: 11px; line-height: 18px; margin: 10px 0; }
+p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #6D746D;
+  margin: 10px 0;
+  word-wrap: break-word;
+  }
+a {
+  color: #0085BD;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+  }
+.limiter {
+  width: 960px;
+  margin: 0 auto;
+  padding: 100px 0;
+  }
