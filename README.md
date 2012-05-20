@@ -22,6 +22,5 @@ You need to specify what p tags you would like to target. The minified version o
 
 [http://tristen.github.com/simple-emphasis](http://tristen.github.com/simple-emphasis)
 
-
 ###Thanks!
 To Michael Donohoe [(@donohoe)](twitter.com/#!/donohoe) and the Nytimes [@timesopen](https://twitter.com/#!/timesopen)

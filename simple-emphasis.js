@@ -36,11 +36,15 @@
 
     -------------------------------------------------- */
 
-jQuery(function($) {
+!function(context) {
 
-    var Emphasis = {
-        init: function() {
-            this.config();
+    var Emphasis = function(el) {
+      this.init(el);
+    };
+
+    Emphasis.prototype = {
+        init: function(el) {
+            this.config(el);
             this.pl = false; // Paragraph List
             this.p  = false; // Paragraph Anchor
             this.h  = false; // Highlighted paragraphs
@@ -53,11 +57,8 @@ jQuery(function($) {
             this.vu ? $(document).bind('keydown', this.keydown) : this.paragraphInfo();
         },
 
-        config: function() {
-            // Eligible Paragraphs
-            // This uses some common markup for plain and simple paragraphs - those that are not empty, no classes.
-            // We use jQuery for its css selector awesomeness, but your needs might be simpler (getElementsByTagName('p') etc.)
-            this.paraSelctors           = $('.content p:not(.thumbnail p)');
+        config: function(selector) {
+            this.paraSelctors           = selector;
 
             // Class names
             this.classReady             = 'em-ready';
@@ -70,10 +71,8 @@ jQuery(function($) {
         },
 
         addCSS: function() {
-            // Inject the minimum styles rules required
             var st = document.createElement('style');
             st.setAttribute('type', 'text/css');
-            // for validation goodness
             var stStr = 'p.' + this.classSelectedParagraph + ' { display: block; position: relative; background: #F2F4F5; }' + '@-webkit-keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} p.' + this.classActiveParagraph + ' { display: block; position: relative; background-color: transparent; -webkit-animation:backgroundFade 5s; }';
             try {
                 // try the sensible way
@@ -291,7 +290,7 @@ jQuery(function($) {
         goAnchor: function(p) {
             // Move view to top of a given Paragraph
             if (!p) { return; }
-            var pg = (isNaN(p)) ? this.findKey(p)['elm'] : (this.paragraphList().list[p-1] || false);
+            var pg = (isNaN(p)) ? this.findKey(p).elm : (this.paragraphList().list[p-1] || false);
 
             if (pg) {
                 setTimeout(function(){
@@ -403,8 +402,5 @@ jQuery(function($) {
         }
 
     };
-
-    $(window).bind('load', function() {
-        Emphasis.init();
-    });
-});
+    context['Emphasis'] = Emphasis;
+}(this);
