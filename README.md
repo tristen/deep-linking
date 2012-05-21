@@ -4,15 +4,18 @@ Simple Emphasis is a stripped down version of the Dynamic Deep-Linking and Highl
 ### What's Different?
 
 - Only paragraphs are linked.
-- Toggled on by a single <kbd>shift</kbd> key press 
+- Emphasis turned on by default 
 - Paragraphs toggle on and off a unique generated hash
 - A modified UI
 
-### Assumptions
+### Quick Usage
 
-You need to specify what p tags you would like to target. The minified version of the code and source assumes `div.content p` you can edit the source to suit your needs from the line:
-
-    `this.paraSelctors = $('.content p');`
+``` js
+$(function () {
+  var content = document.getElementsByTagName('p');
+  new Emphasis(content);
+});
+```
 
 ### Dependencies
 
