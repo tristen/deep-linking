@@ -23,7 +23,7 @@ $(function () {
 
 ### Demo
 
-[http://tristen.github.com/simple-emphasis](http://tristen.github.com/simple-emphasis)
+[http://tristen.github.com/demo/simple-emphasis](http://tristen.github.com/demo/simple-emphasis)
 
 ###Thanks!
 To Michael Donohoe [(@donohoe)](twitter.com/#!/donohoe) and the Nytimes [@timesopen](https://twitter.com/#!/timesopen)
