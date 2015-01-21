@@ -1,0 +1,28 @@
+{
+  "name": "deep-linking",
+  "version": "1.0.0",
+  "description": "Deep linking and highlighting UI",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify index.js -s DeepLinking | uglifyjs -mc > dist/deep-linking.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tristen/deep-linking.git"
+  },
+  "keywords": [
+    "UI",
+    "linking"
+  ],
+  "author": "tristen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tristen/deep-linking/issues"
+  },
+  "homepage": "https://github.com/tristen/deep-linking",
+  "devDependencies": {
+    "browserify": "^8.1.1",
+    "uglify-js": "^2.4.16"
+  }
+}

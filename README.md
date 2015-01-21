@@ -1,25 +1,12 @@
-##Simple Emphasis
-Simple Emphasis is a stripped down version of the Dynamic Deep-Linking and Highlighting UI, [Emphasis](https://github.com/NYTimes/Emphasis).
-
-### What's Different?
-
-- Only paragraphs are linked.
-- Emphasis turned on by default 
-- Paragraphs toggle on and off a unique generated hash
-- A modified UI
+## Deep linking
+A stripped down version of the Dynamic Deep-Linking and Highlighting UI, [Emphasis](https://github.com/NYTimes/Emphasis).
 
 ### Quick Usage
 
 ``` js
-$(function () {
-  var content = document.getElementsByTagName('p');
-  new Emphasis(content);
-});
+var content = document.getElementsByTagName('p');
+new DeepLinking(content);
 ```
-
-### Dependencies
-
-- jQuery
 
 ### Demo
 
