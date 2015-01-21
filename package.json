@@ -1,6 +1,6 @@
 {
   "name": "deep-linking",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Deep linking and highlighting UI",
   "main": "index.js",
   "scripts": {

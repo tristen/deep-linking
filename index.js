@@ -34,7 +34,7 @@ DeepLinking.prototype = {
   addCSS: function() {
     var st = document.createElement('style');
     st.setAttribute('type', 'text/css');
-    var stStr = '.' + this.classSelectedTag + ' { display: block; position: relative; background: #F2F4F5; }' + '@-webkit-keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} .' + this.classActiveTag + ' { display: block; position: relative; background-color: transparent; -webkit-animation:backgroundFade 5s; }';
+    var stStr = '.' + this.classSelectedTag + ' { background: #F2F4F5; }' + '@-webkit-keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} @-moz-keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} @-ms-keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} @keyframes backgroundFade{ 0%{background:#FFF0B3;} 100%{background:transparent;}} .' + this.classActiveTag + ' { background-color: transparent; -webkit-animation:backgroundFade 5s; -moz-animation:backgroundFade 5s; -ms-animation:backgroundFade 5s; animation:backgroundFade 5s;}';
     try {
       st.innerHTML = stStr; // The sensible way
     } catch(e) {
@@ -193,7 +193,7 @@ DeepLinking.prototype = {
 
     if (pg) {
       setTimeout(function() {
-        document.body.scrollTop = self.offset(pg).top;
+        window.scrollTo(0, self.offset(pg).top);
       }, 500);
     }
   },
@@ -326,9 +326,11 @@ DeepLinking.prototype = {
 
   offset: function(el) {
     var rect = el.getBoundingClientRect();
+    var docTop = (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    var docLeft = (document.documentElement || document.body.parentNode || document.body).scrollLeft;
     return {
-      top: rect.top + document.body.scrollTop,
-      left: rect.left + document.body.scrollLeft
+      top: rect.top + docTop,
+      left: rect.left + docLeft
     };
   }
 };
