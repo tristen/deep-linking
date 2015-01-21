@@ -10,7 +10,7 @@ new DeepLinking(content);
 
 ### Demo
 
-[http://tristen.github.com/simple-emphasis/demo](http://tristen.github.com/simple-emphasis/demo)
+[http://tristen.ca/deep-linking/demo/](http://tristen.ca/deep-linking/demo/)
 
 ###Thanks!
 To Michael Donohoe [(@donohoe)](twitter.com/#!/donohoe) and the Nytimes [@timesopen](https://twitter.com/#!/timesopen)
