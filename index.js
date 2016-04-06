@@ -1,4 +1,7 @@
-;(function(global) {
+'use strict';
+/* global module */
+
+(function(global) {
 
 var DeepLinking = function(el) {
   this.init(el);
@@ -111,7 +114,7 @@ DeepLinking.prototype = {
   },
 
   updateURLHash: function(change) {
-    var key, nSent, hash;
+    var nSent, sLen, hash;
     // Scan the Tags, note selections, highlights and update the URL with the new Hash
     if (change) {
       var h = 'h[',

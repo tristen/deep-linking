@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "browserify index.js -s DeepLinking | uglifyjs -mc > dist/deep-linking.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/tristen/deep-linking",
   "devDependencies": {
     "browserify": "^8.1.1",
+    "eslint": "^2.7.0",
     "uglify-js": "^2.4.16"
   }
 }
