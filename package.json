@@ -23,7 +23,7 @@
   "homepage": "https://github.com/tristen/deep-linking",
   "devDependencies": {
     "browserify": "^8.1.1",
-    "eslint": "^2.7.0",
+    "eslint": "^6.8.0",
     "uglify-js": "^2.4.16"
   }
 }
