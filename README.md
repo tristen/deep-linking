@@ -12,5 +12,5 @@ new DeepLinking(content);
 
 [http://tristen.ca/deep-linking/demo/](http://tristen.ca/deep-linking/demo/)
 
-###Thanks!
+### Thanks!
 To Michael Donohoe [(@donohoe)](twitter.com/#!/donohoe) and the Nytimes [@timesopen](https://twitter.com/#!/timesopen)
